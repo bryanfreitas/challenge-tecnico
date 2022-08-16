@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const cursoSchema = mongoose.Schema({ 
     _id: mongoose.Schema.Types.ObjectId,
     client: [{
-        alumno: { type: String},
+        alumno: { type: mongoose.Schema.Types.ObjectId, ref: 'Client'},
         nota: { type: Number}
     }],
     anioDictado: { type: Number, require: true},

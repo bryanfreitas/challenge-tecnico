@@ -47,7 +47,7 @@ router.get('/', (req, res, next) => {
         });
     });
 });
-*/
+*/ 
 
 //Listado de todos los datos
 router.get('/', (req, res, next) => {
@@ -180,6 +180,31 @@ router.delete('/:cursoId', (req, res, next) => {
     });
 });
 
+
+
+
+
+//Intento ingresar un alumno a un curso
+router.post('/curso/:id', (req, res, next) =>{
+    const curso = new Curso({
+        _id: mongoose.Types.ObjectId(),
+        client: [{
+            alumno: req.body.alumnoId,
+            nota: req.body.nota
+        }]
+    });
+    curso.save()
+    .then(result => {
+        console.log(result);
+        res.status(201).json(result);
+    })
+    .catch(err => {
+        console.log(err);
+        res.status(500).json({
+            error : err
+        });
+    });
+});
 
 
 module.exports = router;
